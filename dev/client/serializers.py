@@ -19,5 +19,6 @@ class ClientSerializer(serializers.ModelSerializer):
         problems_data = validated_data.pop('health_problem')
         client = Client.objects.create(**validated_data)
         for problem in problems_data:
-            HealthProblem.objects.create(**problem)
+            health_problem = HealthProblem.objects.create(**problem)
+            client.health_problem.add(health_problem)
         return client

@@ -6,8 +6,6 @@ class HealthProblem(models.Model):
     name = models.CharField(max_length=200)
     grade = models.IntegerField(choices=((1, 1), (2, 2)))
 
-    def __str__(self):
-        return '%s, %d' % (self.name, self.grade)
 
 class Client(models.Model):
     GENDER_CHOICES = (
@@ -22,3 +20,6 @@ class Client(models.Model):
     health_problem = models.ManyToManyField(HealthProblem)
     created_at = models.DateTimeField(auto_now_add=True)
     att_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self) -> str:
+        return self.name
